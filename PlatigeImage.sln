@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatigeImage", "PlatigeImage\PlatigeImage.csproj", "{3A47FB7E-DF34-4C38-AA75-D27A589ADDFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatigeImage.Data", "PlatigeImage.Data\PlatigeImage.Data.csproj", "{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A47FB7E-DF34-4C38-AA75-D27A589ADDFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A47FB7E-DF34-4C38-AA75-D27A589ADDFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A47FB7E-DF34-4C38-AA75-D27A589ADDFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A47FB7E-DF34-4C38-AA75-D27A589ADDFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF16E3E4-4163-4F50-A611-5DF84D4F1BEF}
+	EndGlobalSection
+EndGlobal
