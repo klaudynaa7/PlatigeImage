@@ -1,15 +1,18 @@
 using DevExpress.XtraEditors.Controls;
 using System.Data.SqlClient;
-using System.Data;
+using PlatigeImage.Data;
 
 namespace PlatigeImage
 {
     public partial class DatabaseConnectionForm : Form
     {
-        public DatabaseConnectionForm()
-        {
-            InitializeComponent();
-        }
+        public string? ServerName { get; private set; }
+        public string? Username { get; private set; }
+        public string? Password { get; private set; }
+        public string? DatabaseName { get; private set; }
+        public bool IntegratedSecurity { get; private set; }
+
+        public DatabaseConnectionForm() => InitializeComponent();
 
         private void btnListOfDatabase_Click(object sender, EventArgs e)
         {
@@ -25,32 +28,19 @@ namespace PlatigeImage
             {
                 cbDatabase.Properties.Items.Clear();
 
-                if (string.IsNullOrWhiteSpace(teDataSource.Text))
-                {
-                    MessageBox.Show("Proszê wpisaæ nazwê serwera");
+                if (!CheckServerNameIsCompleted())
                     return;
-                }
 
-                var sqlCon = new SqlConnection("Data Source = " + teDataSource.Text +
-                                               "; User Id = " + teLogin.Text +
-                                               "; Password = " + tePassword.Text +
-                                               //"; Integrated Security= " + ceIntegratedSecurity.EditValue +
-                                               ";");
-                sqlCon.Open();
-                var sqlCommand = new SqlCommand
+                var connectionString = new SqlConnection($"Server={teServer.Text};User Id={teUserId.Text};Password={tePassword.Text};Integrated Security={ceIntegratedSecurity.Checked};TrustServerCertificate=True;");
+                connectionString.Open();
+                var query = "SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb');";
+                using (var command = new SqlCommand(query, connectionString))
+                using (var reader = command.ExecuteReader())
                 {
-                    Connection = sqlCon,
-                    CommandType = CommandType.StoredProcedure,
-                    CommandText = "sp_databases"
-                };
-
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-
-                while (sqlDataReader.Read())
-                {
-                    cbDatabase.Properties.Items.Add(new ImageComboBoxItem(sqlDataReader.GetString(0), sqlDataReader.GetString(0), -1));
+                    while (reader.Read())
+                        cbDatabase.Properties.Items.Add(new ImageListBoxItem(reader.GetString(0)));
                 }
-                sqlCon.Close();
+                connectionString.Close();
             }
             catch
             {
@@ -60,7 +50,35 @@ namespace PlatigeImage
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            ServerName = teServer.Text;
+            Username = teUserId.Text;
+            Password = tePassword.Text;
+            DatabaseName = cbDatabase.Text;
+            IntegratedSecurity = ceIntegratedSecurity.Checked;
 
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnTestConnection_Click(object sender, EventArgs e)
+        {
+            var connectionString = $"Server={teServer.Text};User Id={teUserId.Text};Password={tePassword.Text};Database={cbDatabase.Text};Integrated Security={ceIntegratedSecurity.Checked};TrustServerCertificate=True;";
+
+            if (DbConnectionHelper.TestConnection(connectionString))
+                MessageBox.Show("Po³¹czenie z baz¹ danych udane.");
+            else
+                MessageBox.Show("Po³¹czenie z baz¹ danych nie powiod³o siê");
+        }
+
+        private bool CheckServerNameIsCompleted()
+        {
+            if (string.IsNullOrWhiteSpace(teServer.Text))
+            {
+                MessageBox.Show("Proszê wpisaæ nazwê serwera");
+                return false;
+            }
+            else
+                return true;
         }
     }
 }

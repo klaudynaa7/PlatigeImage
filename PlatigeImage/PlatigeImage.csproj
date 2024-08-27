@@ -10,6 +10,14 @@
 
   <ItemGroup>
     <PackageReference Include="DevExpress.Win.Design" Version="24.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlatigeImage.Data\PlatigeImage.Data.csproj" />
   </ItemGroup>
 
 </Project>
