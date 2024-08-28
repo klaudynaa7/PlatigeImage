@@ -5,7 +5,9 @@ VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatigeImage", "PlatigeImage\PlatigeImage.csproj", "{3A47FB7E-DF34-4C38-AA75-D27A589ADDFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatigeImage.Data", "PlatigeImage.Data\PlatigeImage.Data.csproj", "{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatigeImage.Data", "PlatigeImage.Data\PlatigeImage.Data.csproj", "{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatigeImage.Infrastructure", "PlatigeImage.Infrastructure\PlatigeImage.Infrastructure.csproj", "{130F948B-6B2B-4FD1-B0FB-B6962FE6EF7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C78201C-2DD6-46FE-91BD-A6E7B15C3130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130F948B-6B2B-4FD1-B0FB-B6962FE6EF7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130F948B-6B2B-4FD1-B0FB-B6962FE6EF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130F948B-6B2B-4FD1-B0FB-B6962FE6EF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130F948B-6B2B-4FD1-B0FB-B6962FE6EF7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

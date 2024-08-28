@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatabaseConnectionForm));
             gcDataBaseConnection = new DevExpress.XtraEditors.GroupControl();
             lcDatabaseConnection = new DevExpress.XtraLayout.LayoutControl();
             ceIntegratedSecurity = new DevExpress.XtraEditors.CheckEdit();
@@ -118,9 +119,10 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(457, 234);
+            btnConfirm.ImageOptions.Image = (Image)resources.GetObject("btnConfirm.ImageOptions.Image");
+            btnConfirm.Location = new Point(456, 234);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(145, 32);
+            btnConfirm.Size = new Size(146, 32);
             btnConfirm.StyleController = lcDatabaseConnection;
             btnConfirm.TabIndex = 0;
             btnConfirm.Text = "Potwierdź";
@@ -128,9 +130,10 @@
             // 
             // btnTestConnection
             // 
+            btnTestConnection.ImageOptions.Image = (Image)resources.GetObject("btnTestConnection.ImageOptions.Image");
             btnTestConnection.Location = new Point(12, 234);
             btnTestConnection.Name = "btnTestConnection";
-            btnTestConnection.Size = new Size(293, 32);
+            btnTestConnection.Size = new Size(196, 32);
             btnTestConnection.StyleController = lcDatabaseConnection;
             btnTestConnection.TabIndex = 6;
             btnTestConnection.Text = "Testuj połączenie";
@@ -203,9 +206,9 @@
             // emptySpaceItem1
             // 
             emptySpaceItem1.AllowHotTrack = false;
-            emptySpaceItem1.Location = new Point(297, 222);
+            emptySpaceItem1.Location = new Point(200, 222);
             emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new Size(148, 36);
+            emptySpaceItem1.Size = new Size(244, 36);
             emptySpaceItem1.TextSize = new Size(0, 0);
             // 
             // lciUserId
@@ -255,7 +258,7 @@
             lciTestConnection.Control = btnTestConnection;
             lciTestConnection.Location = new Point(0, 222);
             lciTestConnection.Name = "lciTestConnection";
-            lciTestConnection.Size = new Size(297, 36);
+            lciTestConnection.Size = new Size(200, 36);
             lciTestConnection.TextSize = new Size(0, 0);
             lciTestConnection.TextVisible = false;
             // 
@@ -278,9 +281,9 @@
             // lciConfirmButton
             // 
             lciConfirmButton.Control = btnConfirm;
-            lciConfirmButton.Location = new Point(445, 222);
+            lciConfirmButton.Location = new Point(444, 222);
             lciConfirmButton.Name = "lciConfirmButton";
-            lciConfirmButton.Size = new Size(149, 36);
+            lciConfirmButton.Size = new Size(150, 36);
             lciConfirmButton.TextSize = new Size(0, 0);
             lciConfirmButton.TextVisible = false;
             // 
@@ -324,6 +327,7 @@
             MinimizeBox = false;
             MinimumSize = new Size(640, 380);
             Name = "DatabaseConnectionForm";
+            ShowIcon = false;
             Text = "Wstępna konfiguracja";
             ((System.ComponentModel.ISupportInitialize)gcDataBaseConnection).EndInit();
             gcDataBaseConnection.ResumeLayout(false);

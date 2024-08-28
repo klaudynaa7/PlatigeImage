@@ -7,12 +7,15 @@ namespace PlatigeImage
     public partial class DatabaseConnectionForm : Form
     {
         public string? ServerName { get; private set; }
-        public string? Username { get; private set; }
+        public string? UserId { get; private set; }
         public string? Password { get; private set; }
         public string? DatabaseName { get; private set; }
         public bool IntegratedSecurity { get; private set; }
 
-        public DatabaseConnectionForm() => InitializeComponent();
+        public DatabaseConnectionForm()
+        {
+            InitializeComponent();
+        }
 
         private void btnListOfDatabase_Click(object sender, EventArgs e)
         {
@@ -51,7 +54,7 @@ namespace PlatigeImage
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             ServerName = teServer.Text;
-            Username = teUserId.Text;
+            UserId = teUserId.Text;
             Password = tePassword.Text;
             DatabaseName = cbDatabase.Text;
             IntegratedSecurity = ceIntegratedSecurity.Checked;

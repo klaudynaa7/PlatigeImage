@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PlatigeImage.Data.Entities
 {
@@ -7,13 +8,18 @@ namespace PlatigeImage.Data.Entities
     {
         public required long ContractorId { get; set; }
 
-        [ForeignKey("ContractorId")]
-        public required Contractor Contractor { get; set; }
+        public virtual Contractor? Contractor { get; set; }
 
-        public required string Numer { get; set; } = string.Empty;
+        public required string Number { get; set; } = string.Empty;
 
         [Column(TypeName = "decimal(18, 2)")]
-        public required decimal NetAmount { get; set; }
+        public required decimal NetValues { get; set; }
+
+        [Column(TypeName = "decimal(18, 2)")]
+        public required decimal GrossValue { get; set; }
+
+        [Column(TypeName = "decimal(18, 2)")]
+        public required decimal Vat { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public required decimal VatRate { get; set; }

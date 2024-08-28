@@ -18,7 +18,7 @@ namespace PlatigeImage.Data.Entities
         public string Address { get; set; } = string.Empty;
 
         [MaxLength(11, ErrorMessage = "NIP must not be longer than 11 characters")]
-        public required string NIP { get; set; }
+        public string? NIP { get; set; }
 
         public bool IsActive { get; set; } = true;
 
