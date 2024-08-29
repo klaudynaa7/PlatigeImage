@@ -6,7 +6,8 @@ namespace PlatigeImage.Infrastructure.DataAccess.Base
 {
     public interface IRepository<TEntity> where TEntity : BaseEntity
     {
-        IQueryable<TEntity> GetAllAsync();
+        BindingList<TEntity> GetDataToBindingSource();
+        IQueryable<TEntity> GetAll();
 
         Task<IList<TEntity>> GetListOfAllAsync();
         Task SaveAsync();

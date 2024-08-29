@@ -28,16 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrlHeader = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xtCountryContractorCount = new DevExpress.XtraReports.UI.XRTable();
-            this.xtrHeader = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xtcHeaderCountry = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xtcHeaderContractorCount = new DevExpress.XtraReports.UI.XRTableCell();
             this.Header = new DevExpress.XtraReports.UI.XRControlStyle();
-            ((System.ComponentModel.ISupportInitialize)(this.xtCountryContractorCount)).BeginInit();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrtHeader = new DevExpress.XtraReports.UI.XRTable();
+            this.xrtrHeader = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrtcCountryHeader = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrtrCountOfContractor = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrtDetails = new DevExpress.XtraReports.UI.XRTable();
+            this.xrtrDetails = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrtcCountry = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrtcCountOfContractors = new DevExpress.XtraReports.UI.XRTableCell();
+            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrtHeader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrtDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -66,66 +75,123 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xtCountryContractorCount});
-            this.Detail.HeightF = 52.08334F;
+            this.xrtDetails});
+            this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
-            // 
-            // xtCountryContractorCount
-            // 
-            this.xtCountryContractorCount.BorderColor = System.Drawing.Color.DimGray;
-            this.xtCountryContractorCount.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xtCountryContractorCount.LocationFloat = new DevExpress.Utils.PointFloat(52.7778F, 0F);
-            this.xtCountryContractorCount.Name = "xtCountryContractorCount";
-            this.xtCountryContractorCount.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xtCountryContractorCount.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xtrHeader});
-            this.xtCountryContractorCount.SizeF = new System.Drawing.SizeF(550F, 28F);
-            this.xtCountryContractorCount.StylePriority.UseBorderColor = false;
-            this.xtCountryContractorCount.StylePriority.UseTextAlignment = false;
-            this.xtCountryContractorCount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // xtrHeader
-            // 
-            this.xtrHeader.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xtcHeaderCountry,
-            this.xtcHeaderContractorCount});
-            this.xtrHeader.Name = "xtrHeader";
-            this.xtrHeader.Weight = 1D;
-            // 
-            // xtcHeaderCountry
-            // 
-            this.xtcHeaderCountry.Multiline = true;
-            this.xtcHeaderCountry.Name = "xtcHeaderCountry";
-            this.xtcHeaderCountry.StyleName = "Header";
-            this.xtcHeaderCountry.Text = "Kraj";
-            this.xtcHeaderCountry.Weight = 1.4999999652813119D;
-            // 
-            // xtcHeaderContractorCount
-            // 
-            this.xtcHeaderContractorCount.Multiline = true;
-            this.xtcHeaderContractorCount.Name = "xtcHeaderContractorCount";
-            this.xtcHeaderContractorCount.StyleName = "Header";
-            this.xtcHeaderContractorCount.Text = "Liczba kontrahentów";
-            this.xtcHeaderContractorCount.Weight = 1.5000000347186884D;
             // 
             // Header
             // 
-            this.Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Header.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Header.Name = "Header";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(global::PlatigeImage.Dto.NumberOfContractorsInCountryReport.CountryContractorCountDto);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // xrtHeader
+            // 
+            this.xrtHeader.Font = new DevExpress.Drawing.DXFont("Arial", 12F, DevExpress.Drawing.DXFontStyle.Bold);
+            this.xrtHeader.LocationFloat = new DevExpress.Utils.PointFloat(52.77784F, 0F);
+            this.xrtHeader.Name = "xrtHeader";
+            this.xrtHeader.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrtHeader.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrtrHeader});
+            this.xrtHeader.SizeF = new System.Drawing.SizeF(550F, 25F);
+            this.xrtHeader.StyleName = "Header";
+            this.xrtHeader.StylePriority.UseFont = false;
+            this.xrtHeader.StylePriority.UseTextAlignment = false;
+            this.xrtHeader.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrtrHeader
+            // 
+            this.xrtrHeader.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrtcCountryHeader,
+            this.xrtrCountOfContractor});
+            this.xrtrHeader.Name = "xrtrHeader";
+            this.xrtrHeader.Weight = 1D;
+            // 
+            // xrtcCountryHeader
+            // 
+            this.xrtcCountryHeader.Multiline = true;
+            this.xrtcCountryHeader.Name = "xrtcCountryHeader";
+            this.xrtcCountryHeader.Text = "Kraj";
+            this.xrtcCountryHeader.Weight = 2.75D;
+            // 
+            // xrtrCountOfContractor
+            // 
+            this.xrtrCountOfContractor.Multiline = true;
+            this.xrtrCountOfContractor.Name = "xrtrCountOfContractor";
+            this.xrtrCountOfContractor.Text = "Liczba kontrahentów";
+            this.xrtrCountOfContractor.Weight = 2.75D;
+            // 
+            // xrtDetails
+            // 
+            this.xrtDetails.BorderColor = System.Drawing.Color.DimGray;
+            this.xrtDetails.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrtDetails.LocationFloat = new DevExpress.Utils.PointFloat(52.77784F, 0F);
+            this.xrtDetails.Name = "xrtDetails";
+            this.xrtDetails.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrtDetails.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrtrDetails});
+            this.xrtDetails.SizeF = new System.Drawing.SizeF(550F, 25F);
+            this.xrtDetails.StylePriority.UseBorderColor = false;
+            this.xrtDetails.StylePriority.UseBorders = false;
+            this.xrtDetails.StylePriority.UseTextAlignment = false;
+            this.xrtDetails.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrtrDetails
+            // 
+            this.xrtrDetails.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrtcCountry,
+            this.xrtcCountOfContractors});
+            this.xrtrDetails.Name = "xrtrDetails";
+            this.xrtrDetails.Weight = 1D;
+            // 
+            // xrtcCountry
+            // 
+            this.xrtcCountry.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Country]")});
+            this.xrtcCountry.Multiline = true;
+            this.xrtcCountry.Name = "xrtcCountry";
+            this.xrtcCountry.Text = "xrtcCountry";
+            this.xrtcCountry.Weight = 2.7500002080743968D;
+            // 
+            // xrtcCountOfContractors
+            // 
+            this.xrtcCountOfContractors.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ContractorCount]")});
+            this.xrtcCountOfContractors.Multiline = true;
+            this.xrtcCountOfContractors.Name = "xrtcCountOfContractors";
+            this.xrtcCountOfContractors.Text = "xrtcCountOfContractors";
+            this.xrtcCountOfContractors.Weight = 2.7500000971013847D;
+            // 
+            // GroupHeader1
+            // 
+            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrtHeader});
+            this.GroupHeader1.HeightF = 25F;
+            this.GroupHeader1.Name = "GroupHeader1";
             // 
             // NumberOfContractorsInCountryReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,
             this.BottomMargin,
-            this.Detail});
+            this.Detail,
+            this.GroupHeader1});
+            this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
+            this.objectDataSource1});
+            this.DataSource = this.objectDataSource1;
             this.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Header});
             this.Version = "24.1";
-            ((System.ComponentModel.ISupportInitialize)(this.xtCountryContractorCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrtHeader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrtDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -135,11 +201,17 @@
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.DetailBand Detail;
-        private DevExpress.XtraReports.UI.XRTable xtCountryContractorCount;
         private DevExpress.XtraReports.UI.XRLabel xrlHeader;
-        private DevExpress.XtraReports.UI.XRTableRow xtrHeader;
-        private DevExpress.XtraReports.UI.XRTableCell xtcHeaderCountry;
-        private DevExpress.XtraReports.UI.XRTableCell xtcHeaderContractorCount;
         private DevExpress.XtraReports.UI.XRControlStyle Header;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private DevExpress.XtraReports.UI.XRTable xrtHeader;
+        private DevExpress.XtraReports.UI.XRTableRow xrtrHeader;
+        private DevExpress.XtraReports.UI.XRTableCell xrtcCountryHeader;
+        private DevExpress.XtraReports.UI.XRTableCell xrtrCountOfContractor;
+        private DevExpress.XtraReports.UI.XRTable xrtDetails;
+        private DevExpress.XtraReports.UI.XRTableRow xrtrDetails;
+        private DevExpress.XtraReports.UI.XRTableCell xrtcCountry;
+        private DevExpress.XtraReports.UI.XRTableCell xrtcCountOfContractors;
+        private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader1;
     }
 }

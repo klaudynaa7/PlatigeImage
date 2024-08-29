@@ -8,19 +8,7 @@ namespace PlatigeImage.Reports
         public NumberOfContractorsInCountryReport(List<CountryContractorCountDto> contractors)
         {
             InitializeComponent();
-
-            foreach (var contractor in contractors)
-            {
-                XRTableRow row = new();
-                XRTableCell cell1 = new();
-                XRTableCell cell2 = new();
-
-                cell1.Text = contractor.Country;
-                cell2.Text = contractor.ContractorCount.ToString(); 
-
-                row.Cells.AddRange([cell1, cell2]);
-                xtCountryContractorCount.Rows.Add(row);
-            }
+            DataSource = contractors;
         }
     }
 }

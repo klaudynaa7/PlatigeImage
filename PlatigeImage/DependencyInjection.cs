@@ -5,7 +5,6 @@ using PlatigeImage.Factory.ImageComboBoxDataLoaderFactory;
 using PlatigeImage.Factory.ReportFactory;
 using PlatigeImage.FillImageComboBox;
 using PlatigeImage.Forms;
-using PlatigeImage.GenerateData;
 using PlatigeImage.Reports;
 
 namespace PlatigeImage

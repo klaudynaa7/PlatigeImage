@@ -1,6 +1,5 @@
 using DevExpress.XtraEditors.Controls;
 using System.Data.SqlClient;
-using PlatigeImage.Data;
 using PlatigeImage.Infrastructure.Connection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,12 +9,12 @@ namespace PlatigeImage
     {
         private readonly DatabaseConfig _dbConfig;
         private readonly IServiceProvider _serviceProvider;
-
+        
         public DatabaseConnectionForm(DatabaseConfig dbConfig, IServiceProvider serviceProvider)
         {
             InitializeComponent();
             _dbConfig = dbConfig;
-            _serviceProvider = serviceProvider;
+            _serviceProvider = serviceProvider;            
         }
 
         private void btnListOfDatabase_Click(object sender, EventArgs e)
@@ -54,7 +53,6 @@ namespace PlatigeImage
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            var dbConfig = _serviceProvider.GetRequiredService<DatabaseConfig>();
             _dbConfig.ServerName = teServer.Text;
             _dbConfig.DatabaseName = cbDatabase.Text;
             _dbConfig.UserId = teUserId.Text;
@@ -69,7 +67,8 @@ namespace PlatigeImage
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
             var connectionString = $"Server={teServer.Text};User Id={teUserId.Text};Password={tePassword.Text};Database={cbDatabase.Text};Integrated Security={ceIntegratedSecurity.Checked};TrustServerCertificate=True;";
-            if (DbConnectionHelper.TestConnection(connectionString))
+            DatabaseConnectionChecker connectionChecker = new DatabaseConnectionChecker(connectionString);
+            if (connectionChecker.CheckConnection())
                 MessageBox.Show("Po³¹czenie z baz¹ danych udane.");
             else
                 MessageBox.Show("Po³¹czenie z baz¹ danych nie powiod³o siê");

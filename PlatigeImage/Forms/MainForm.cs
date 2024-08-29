@@ -4,12 +4,12 @@ using DevExpress.XtraReports.UI;
 using PlatigeImage.Dto.InvoicesPerContractor;
 using PlatigeImage.Dto.NumberOfContractorsInCountryReport;
 using PlatigeImage.Dto.TotalAmountPerMonth;
-using PlatigeImage.Enums;
 using PlatigeImage.Factory.FormFactory;
 using PlatigeImage.Factory.ReportFactory;
 using PlatigeImage.Forms;
 using PlatigeImage.Infrastructure.DataAccess.Contractors;
 using PlatigeImage.Infrastructure.DataAccess.Invoices;
+using PlatigeImage.Reports;
 
 namespace PlatigeImage
 {
@@ -40,10 +40,10 @@ namespace PlatigeImage
             childForm.Show();
         }
 
-        private void OpenReport<TData>(TypeOfReportEnum reportType, TData data)
+        private void OpenReport<TReport, TData>(TData data) where TReport : XtraReport
         {
-            var report = _reportFactory.CreateReport(reportType, data);
-            report.ShowPreview();
+            var reportInstance = _reportFactory.CreateReport<TReport, TData>(data);
+            reportInstance.ShowPreview();
         }
 
         #region Form
@@ -62,27 +62,22 @@ namespace PlatigeImage
         private async void bbiInvoicesPerContractorReports_ItemClickAsync(object sender, ItemClickEventArgs e)
         {
             var contractorReports = await GetInvoicesPerContractor();
-            OpenReport(TypeOfReportEnum.InvoicesPerContractorReport, contractorReports);
+            OpenReport<InvoicesPerContractorReport, IList<InvoicesPerContractorDto>>(contractorReports);
         }
 
         private async void bbiTotalValueOfInvoicePerMonthReport_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var contractorCountsByCountry = await GetTotalAmountPerMonth();
-            OpenReport(TypeOfReportEnum.TotalAmountPerMonthReport, contractorCountsByCountry);
+            var totalAmountPerMonth = await GetTotalAmountPerMonth();
+            OpenReport<TotalAmountPerMonthReport, IList<MonthlyInvoiceSummaryDto>>(totalAmountPerMonth);
         }
 
         private async void bbiNumberOfContractorsInCountry_ItemClick(object sender, ItemClickEventArgs e)
         {
             var numberOfContractorsInCountry = await GetNumberOfContractorsInCountry();
-            OpenReport(TypeOfReportEnum.NumberOfContractorsInCountryReport, numberOfContractorsInCountry);
+            OpenReport<NumberOfContractorsInCountryReport, IList<CountryContractorCountDto>>(numberOfContractorsInCountry);
         }
 
-        private async Task<List<CountryContractorCountDto>> GetNumberOfContractorsInCountry()
-        {
-            return await _contractorRepository.GetNumberOfContractorsInCountryAsync();
-        }
-
-        private async Task<List<MonthlyInvoiceSummary>> GetInvoicesPerContractor()
+        private async Task<IList<InvoicesPerContractorDto>> GetInvoicesPerContractor()
         {
             return await _contractorRepository.GetInvoicesPerContractorAsync();
 
@@ -92,6 +87,11 @@ namespace PlatigeImage
         {
             return await _invoiceRepository.GetTotalAmountPerMonth();
         }
+
+        private async Task<IList<CountryContractorCountDto>> GetNumberOfContractorsInCountry()
+        {
+            return await _contractorRepository.GetNumberOfContractorsInCountryAsync();
+        }        
         #endregion
     }
 }

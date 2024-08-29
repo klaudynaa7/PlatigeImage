@@ -2,9 +2,6 @@
 {
     public class DatabaseConfig()
     {
-        private static DatabaseConfig? _connectionInfo;
-        private static readonly object lockObject = new();
-
         public string? ServerName { get; set; }
         public string? UserId { get; set; }
         public string? Password { get; set; }

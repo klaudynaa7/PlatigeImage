@@ -27,6 +27,9 @@ namespace PlatigeImage.Forms
 
         private async void FillType()
         {
+            if (DesignMode)
+                return;
+
             var data = ImageComboBoxDataLoaderFactory.Create(FillImageComboBoxEnum.ContractorType);
             await data.LoadDataAsync(riiceType.Items);
         }

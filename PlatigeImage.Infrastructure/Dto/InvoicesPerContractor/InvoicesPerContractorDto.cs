@@ -1,6 +1,6 @@
 ﻿namespace PlatigeImage.Dto.InvoicesPerContractor
 {
-    public class MonthlyInvoiceSummary
+    public class InvoicesPerContractorDto
     {
         public long ContractorId { get; set; }
         public string? ContractorName { get; set; }

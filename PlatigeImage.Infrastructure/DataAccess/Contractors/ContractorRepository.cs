@@ -5,58 +5,47 @@ using PlatigeImage.Dto.InvoicesPerContractor;
 using PlatigeImage.Dto.NumberOfContractorsInCountryReport;
 using PlatigeImage.Dto.TotalAmountPerMonth;
 using PlatigeImage.Infrastructure.DataAccess.Base;
-using System.ComponentModel;
 
 namespace PlatigeImage.Infrastructure.DataAccess.Contractors
 {
     internal class ContractorRepository(ApplicationDbContext dbContext) : BaseRepository<Contractor>(dbContext), IContractorRepository
     {
-        private void LoadData()
-            => DbContext.Contractors.Load();
-        
-
-        public BindingList<Contractor> GetDataToBindingSource()
-        {
-            LoadData();
-            return DbContext.Contractors.Local.ToBindingList();
-        }
-
         public async Task<IList<long>> GetIdsAsync()
         {
-            return await DbContext.Set<Contractor>()
+            return await GetAll()
                         .Select(x => x.Id)
                         .ToListAsync();
         }
 
-        public async Task<List<CountryContractorCountDto>> GetNumberOfContractorsInCountryAsync()
+        public async Task<List<InvoicesPerContractorDto>> GetInvoicesPerContractorAsync()
         {
-            return await GetAllAsync()
-                .GroupBy(c => c.Country)
-                .Select(g => new CountryContractorCountDto
+            return await GetAll()
+                .Include(c => c.Invoices)
+                .Select(c => new InvoicesPerContractorDto
                 {
-                    ContractorCount = g.Count(),
-                    Country = g.Key
+                    ContractorId = c.Id,
+                    ContractorName = c.Name,
+                    Invoices = c.Invoices == null ? null : c.Invoices.Select(i => new InvoiceInfoDto
+                    {
+                        InvoiceId = i.Id,
+                        InvoiceNumber = i.Number,
+                        NetAmount = i.NetValues,
+                        GrossAmount = i.GrossValue
+                    }).ToList()//,
+                    //TotalNetAmount = c.Invoices == null ? 0 : c.Invoices.Sum(i => i.NetValues),
+                    //TotalGrossAmount = c.Invoices == null ? 0 : c.Invoices.Sum(i => i.GrossValue)
                 })
                 .ToListAsync();
         }
 
-        public async Task<List<MonthlyInvoiceSummary>> GetInvoicesPerContractorAsync()
+        public async Task<List<CountryContractorCountDto>> GetNumberOfContractorsInCountryAsync()
         {
-            return await GetAllAsync()
-                .Include(c => c.Invoices)
-                .Select(c => new MonthlyInvoiceSummary
+            return await GetAll()
+                .GroupBy(c => c.Country.Trim())
+                .Select(g => new CountryContractorCountDto
                 {
-                    ContractorId = c.Id,
-                    ContractorName = c.Name,
-                    Country = c.Country,
-                    Invoices = c.Invoices.Select(i => new InvoiceInfoDto
-                    {
-                        InvoiceId = i.Id,
-                        NetAmount = i.NetValues,
-                        GrossAmount = i.GrossValue
-                    }).ToList(),
-                    TotalNetAmount = c.Invoices.Sum(i => i.NetValues),
-                    TotalGrossAmount = c.Invoices.Sum(i => i.GrossValue)
+                    ContractorCount = g.Count(),
+                    Country = g.Key
                 })
                 .ToListAsync();
         }
