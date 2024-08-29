@@ -12,16 +12,16 @@ namespace PlatigeImage.Data.Entities
 
         public required string Number { get; set; } = string.Empty;
 
-        [Column(TypeName = "decimal(18, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public required decimal NetValues { get; set; }
 
-        [Column(TypeName = "decimal(18, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public required decimal GrossValue { get; set; }
 
-        [Column(TypeName = "decimal(18, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public required decimal Vat { get; set; }
 
-        [Column(TypeName = "decimal(18, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public required decimal VatRate { get; set; }
 
         public string Currency { get; set; } = "PLN";

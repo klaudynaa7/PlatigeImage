@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccess\" />
+    <ProjectReference Include="..\PlatigeImage.Data\PlatigeImage.Data.csproj" />
   </ItemGroup>
 
 </Project>
