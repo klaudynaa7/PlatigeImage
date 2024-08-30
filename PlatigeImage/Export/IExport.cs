@@ -6,5 +6,4 @@ namespace PlatigeImage.Export
     {
         void Export(GridView gricView, string filePath);
     }
-
 }

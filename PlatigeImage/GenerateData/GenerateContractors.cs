@@ -1,4 +1,5 @@
 ﻿using PlatigeImage.Data.Entities;
+using PlatigeImage.Resources;
 
 namespace PlatigeImage.GenerateData
 {
@@ -15,10 +16,10 @@ namespace PlatigeImage.GenerateData
                 var kontrahent = new Contractor
                 {
                     Type = Convert.ToByte(random.Next(0, 2)),
-                    Name = $"Kontrahent {i + 1}",
+                    Name = $"{StringResource.Contractor} {i + 1}",
                     Shortcut = $"K  {i + 1}",
                     Country = languages[random.Next(languages.Length)],
-                    Address = $"Ulica {random.Next(1, 100)}, Miasto {random.Next(1, 50)}",
+                    Address = $"{StringResource.Street} {random.Next(1, 100)}, {StringResource.City} {random.Next(1, 50)}",
                     NIP = $"{random.Next(100000000, 999999999)}",
                     IsActive = Convert.ToBoolean(random.Next(0, 2))
                 };

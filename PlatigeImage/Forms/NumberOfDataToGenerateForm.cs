@@ -1,4 +1,6 @@
-﻿namespace PlatigeImage.Forms
+﻿using PlatigeImage.Resources;
+
+namespace PlatigeImage.Forms
 {
     public partial class NumberOfDataToGenerateForm : Form
     {
@@ -20,7 +22,7 @@
             }
             else
             {
-                MessageBox.Show("Proszę wprowadzić poprawną liczbę.");
+                MessageBox.Show(StringResource.PleaseEnterTheCorrectNumber);
             }            
         }
     }

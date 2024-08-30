@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using PlatigeImage.Resources;
 using System.Data;
 
 namespace PlatigeImage.Export
@@ -9,7 +10,7 @@ namespace PlatigeImage.Export
         public void Export(GridView gricView, string filePath)
         {
             DataTable dataTable = new DataTable();
-            dataTable.TableName = "Eksport";
+            dataTable.TableName = StringResource.Export;
             foreach (GridColumn column in gricView.Columns)
             {
                 dataTable.Columns.Add(column.FieldName, column.ColumnType);

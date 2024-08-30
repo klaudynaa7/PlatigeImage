@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
+using PlatigeImage.Resources;
 using System.IO;
 
 namespace PlatigeImage.Export
@@ -20,9 +21,9 @@ namespace PlatigeImage.Export
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Filter = "CSV files (*.csv)|*.csv|XML files (*.xml)|*.xml";
-                saveFileDialog.Title = "Zapisz jako";
-                saveFileDialog.DefaultExt = "csv";
+                saveFileDialog.Filter = StringResource.ExportDataFilters;
+                saveFileDialog.Title = StringResource.SaveAs;
+                saveFileDialog.DefaultExt = StringResource.Csv;
                 saveFileDialog.AddExtension = true;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -33,7 +34,10 @@ namespace PlatigeImage.Export
                     if (_exportStrategies.ContainsKey(fileExtension))
                         _exportStrategies[fileExtension].Export(gridView, filePath);
                     else
-                        throw new NotSupportedException($"Format eksportu '{fileExtension}' nie jest obsługiwany.");
+                    {
+                        string errorMessage = string.Format(StringResource.UnsupportedExportFormat, fileExtension);
+                        throw new NotSupportedException(errorMessage);
+                    }
                 }
             }
         }

@@ -2,14 +2,13 @@
 using PlatigeImage.Data;
 using PlatigeImage.Data.Entities;
 using System.ComponentModel;
-using System.Linq.Expressions;
 
 namespace PlatigeImage.Infrastructure.DataAccess.Base
 {
     public abstract class BaseRepository<TEntity>(ApplicationDbContext dbContext) : IRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly ApplicationDbContext _dbContext = dbContext;
-
+        protected ApplicationDbContext DbContext => _dbContext;
         public BindingList<TEntity> GetDataToBindingSource()
         {
             _dbContext.Set<TEntity>().Load();
@@ -27,7 +26,7 @@ namespace PlatigeImage.Infrastructure.DataAccess.Base
             => await _dbContext.SaveChangesAsync();
         
 
-        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate)
-            => await GetAll().AnyAsync(predicate);
+        public async Task<bool> AnyAsync()
+            => await GetAll().AnyAsync();
     }
 }

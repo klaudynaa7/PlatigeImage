@@ -8,7 +8,6 @@ namespace PlatigeImage.Reports
         public InvoicesPerContractorReport(List<InvoicesPerContractorDto> contractorReports)
         {
             InitializeComponent();
-
             DataSource = contractorReports;
         }
     }

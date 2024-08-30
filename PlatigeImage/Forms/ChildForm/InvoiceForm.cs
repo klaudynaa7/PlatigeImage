@@ -2,19 +2,27 @@
 using PlatigeImage.Enums;
 using PlatigeImage.Factory.GenerateData;
 using PlatigeImage.Factory.ImageComboBoxDataLoaderFactory;
+using PlatigeImage.Infrastructure.DataAccess.Contractors;
 using PlatigeImage.Infrastructure.DataAccess.Invoices;
+using PlatigeImage.Resources;
 
 namespace PlatigeImage.Forms
 {
     public partial class InvoiceForm : BaseForm
     {
         private readonly IInvoiceRepository _invoiceRepository;
+        private readonly IContractorRepository _contractorRepository;
 
-        public InvoiceForm(IInvoiceRepository invoiceRepository, IImageComboBoxDataLoaderFactory imageComboBoxDataLoaderFactory, IGenerateDataFactory generateDataFactory) 
+        public InvoiceForm(
+            IInvoiceRepository invoiceRepository,
+            IContractorRepository contractorRepository,
+            IImageComboBoxDataLoaderFactory imageComboBoxDataLoaderFactory, 
+            IGenerateDataFactory generateDataFactory) 
             : base(imageComboBoxDataLoaderFactory, generateDataFactory)
         {
             InitializeComponent();
             _invoiceRepository = invoiceRepository;
+            _contractorRepository = contractorRepository;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -41,6 +49,9 @@ namespace PlatigeImage.Forms
 
         protected async override void GenerateData()
         {
+            if(! await CheckAnyContractorExists())
+                return;
+
             var strategy = GenerateDataFactory.Create<Invoice>();
             var invoices = await strategy.GenerateData(InputValue);
             if (invoices == null)
@@ -48,6 +59,16 @@ namespace PlatigeImage.Forms
 
             foreach (var contractor in invoices)
                 bsInvoice.Add(contractor);
+        }
+
+        private async Task<bool> CheckAnyContractorExists()
+        {
+            if (!await _contractorRepository.AnyAsync())
+            {
+                MessageBox.Show(StringResource.NoContractorExistsInvoicesCannotBeGenerated);
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -4,6 +4,7 @@ using PlatigeImage.Infrastructure.DataAccess.Base;
 using Microsoft.EntityFrameworkCore;
 using PlatigeImage.Dto.TotalAmountPerMonth;
 using System.Globalization;
+using PlatigeImage.Dto.InvoicesPerContractor;
 
 namespace PlatigeImage.Infrastructure.DataAccess.Invoices
 {
@@ -23,6 +24,26 @@ namespace PlatigeImage.Infrastructure.DataAccess.Invoices
                 })
                 .OrderBy(s => s.Year)
                 .ThenBy(s => s.Month)
+                .ToListAsync();
+        }
+
+        public async Task<List<InvoicesPerContractorDto>> GetInvoicesPerContractorAsync()
+        {
+            return await GetAll()
+                .Include(x => x.Contractor)
+                .Select(x => new InvoicesPerContractorDto
+                {
+                    InvoiceId = x.Id,
+                    InvoiceNumber = x.Number,
+                    NetAmount = x.NetValues,
+                    GrossAmount = x.GrossValue,
+                    Contractors = x.Contractor == null ? null : new ContractorInfoDto
+                    {
+                        ContractorId = x.ContractorId,
+                        ContractorName = x.Contractor.Name,
+                        Country = x.Contractor.Country
+                    }
+                })
                 .ToListAsync();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using PlatigeImage.Export;
 using PlatigeImage.Factory.GenerateData;
 using PlatigeImage.Factory.ImageComboBoxDataLoaderFactory;
+using PlatigeImage.Resources;
 using System.ComponentModel;
 
 namespace PlatigeImage.Forms
@@ -57,7 +58,7 @@ namespace PlatigeImage.Forms
                         GenerateData();
                     }
                     else
-                        MessageBox.Show("Proszę wprowadzić poprawną liczbę.");
+                        MessageBox.Show(StringResource.PleaseEnterTheCorrectNumber);
                 }
             }
         }

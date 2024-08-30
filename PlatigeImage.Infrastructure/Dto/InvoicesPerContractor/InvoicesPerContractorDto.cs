@@ -2,11 +2,10 @@
 {
     public class InvoicesPerContractorDto
     {
-        public long ContractorId { get; set; }
-        public string? ContractorName { get; set; }
-        public string? Country { get; set; }
-        public List<InvoiceInfoDto>? Invoices { get; set; }
-        public decimal TotalNetAmount { get; set; }
-        public decimal TotalGrossAmount { get; set; }
+        public long InvoiceId { get; set; }
+        public string? InvoiceNumber { get; set; }
+        public decimal NetAmount { get; set; }
+        public decimal GrossAmount { get; set; }
+        public ContractorInfoDto? Contractors { get; set; }
     }
 }

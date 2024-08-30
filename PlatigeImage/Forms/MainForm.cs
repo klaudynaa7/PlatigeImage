@@ -79,7 +79,7 @@ namespace PlatigeImage
 
         private async Task<IList<InvoicesPerContractorDto>> GetInvoicesPerContractor()
         {
-            return await _contractorRepository.GetInvoicesPerContractorAsync();
+            return await _invoiceRepository.GetInvoicesPerContractorAsync();
 
         }
 
